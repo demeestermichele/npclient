@@ -13,6 +13,7 @@ export class CharacterListComponent implements OnInit {
   characters: Character[] = [];
   subscription: Subscription[] = [];
   error: any;
+  id: number;
 
   @Input()
   character: Character;
@@ -25,6 +26,7 @@ export class CharacterListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCharacters();
+    this.getOne();
   }
 
   getAll() {
@@ -33,10 +35,19 @@ export class CharacterListComponent implements OnInit {
     return this.subscription.push(this.characterService.getAllCharacters().subscribe(characters => this.characters = characters));
   }
 
-  getCharacters():void{
+  getCharacters(): void {
     console.log("this is from character component getCharacters()")
     this.characterService
       .getAllCharacters()
       .subscribe(characters => (this.characters = characters), error => (this.error = error))
   }
+  getOne() {
+    console.log('get one character');
+    return this.subscription.push(
+      this.characterService
+        .getCharacterById(this.id)
+        .subscribe(character => this.character = character));
+
+  }
+
 }

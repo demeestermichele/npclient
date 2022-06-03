@@ -1,18 +1,21 @@
-<p>character-list component</p>
+<h1>Character Overview</h1>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+
 <ul>
-  <li class="w3-bar" *ngFor="let character of characters">
+  <li class="w3-bar w3-button w3-hover-pink" *ngFor="let character of characters">
   <span onclick="this.parentElement.style.display='none'"
-        class="w3-bar-item w3-button w3-xlarge w3-right">&times;</span>
+        class="w3-bar-item w3-button w3-xlarge w3-right">x</span>
     <svg width="60" height="60" [data-jdenticon-value]="character.id" class="w3-bar-item w3-circle"
          style="width:85px"></svg>
     <div>
       <div class="w3-bar-item">
-        <span class="w3-large">{{character.firstName}} </span>
-        <span class="w3-large">{{character.lastName}}</span><br>
+        <span class="w3-large">{{character.firstName}} {{character.lastName}}</span><br>
+        <span class="w3-tiny">{{character.role}}</span><br>
         <span class="w3-tiny">{{character.sex}}</span><br>
+        <span class="w3-tiny" *ngIf="character.mother" >{{character.mother.firstName}} {{character.mother.lastName}} x </span>
+        <span class="w3-tiny" *ngIf="character.father" >{{character.father.firstName}} {{character.father.lastName}}</span><br>
       </div>
       <div>
       </div>

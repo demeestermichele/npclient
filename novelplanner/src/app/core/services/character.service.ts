@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Character} from "../models/character.model";
 import {environment} from "../../../environments/environment";
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -19,4 +20,15 @@ export class CharacterService {
     return this.http.get<Character[]>(url, this.httpOptions);
   }
 
+  getCharacterById(id: number): Observable<Character> {
+    const url = `${environment.characterUrl}/find/${id}`;
+    return this.http.get<Character>(url, this.httpOptions);
+  }
+
 }
+
+/*
+getCharacter(id: number): Observable<Character> {
+  return this.getAllCharacters().pipe(
+    map(characters => characters.find(character => character.id === id))
+  );}*/

@@ -7,10 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-<form action="/character-list" method="GET">
-  <button>List characters</button>
-  <app-character></app-character>
-</form>
+<table>
+  <tr>
+    <td>
+      <form action="/" method="GET">
+        <button class="w3-button w3-hover-pink">Home</button>
+      </form>
+    </td>
+    <td>
+      <form action="/character-list" method="GET">
+        <button class="w3-button w3-hover-pink">Characters</button>
+      </form>
+    </td>
+  </tr>
+</table>
 <body>
 <app-root></app-root>
 
