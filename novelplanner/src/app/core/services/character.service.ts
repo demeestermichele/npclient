@@ -1,21 +1,25 @@
 import { Injectable } from '@angular/core';
-import {Observable, of} from "rxjs";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import { Observable, throwError as observableThrowError, of} from "rxjs";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Character} from "../models/character.model";
 import {environment} from "../../../environments/environment";
+import {catchError, map} from "rxjs/operators";
 
 @Injectable()
 export class CharacterService {
-  httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
-  };
+  private charactersURL = "http://localhost:8080/character-list/"
+
     constructor(private http: HttpClient) { }
 
- private charactersURL = "localhost:8080/character-list"
 
-  getCharacters(): Observable<Character[]> {
-    const characters = of(characters);
-    return heroes;
+  getAllCharacters() {
+    return this.http
+      .get<Character[]>(this.charactersURL)
+      .pipe(map(data => data), catchError(this.handleError));
+  }
+  private handleError(res: HttpErrorResponse | any) {
+    console.error(res.error || res.body.error);
+    return observableThrowError(res.error || 'Server error');
   }
 
 
