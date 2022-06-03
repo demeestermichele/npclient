@@ -3,6 +3,7 @@ import {CharacterService} from "../core/services/character.service";
 import {Observable, Subscription} from 'rxjs';
 import {Character} from "../core/models/character.model";
 import {HttpClient} from "@angular/common/http";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-character',
@@ -10,14 +11,16 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./character.component.scss']
 })
 export class CharacterComponent implements OnInit {
-  characters: Character[] = [];
+  characters: Character[];
   subscription: Subscription[] = [];
+  id: number = +this.route.snapshot.paramMap.get('id');
 
   @Input() character: Character;
 
   constructor(
     private http: HttpClient,
-    private characterService: CharacterService
+    private characterService: CharacterService,
+  private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -30,7 +33,13 @@ export class CharacterComponent implements OnInit {
     return this.subscription.push(this.characterService.getAllCharacters().subscribe(characters => this.characters = characters));
   }
 
-  getCharacter(id: number): Character{
+/*  getCharacter(id: number): Character{
     return this.character[id - 1]
+  }*/
+
+  getCharacter() {
+    console.log('characterdetail.initcharacter');
+    return this.subscription.push(this.characterService.getCharacterById(this.id).subscribe(character => this.character = character));
   }
+
 }

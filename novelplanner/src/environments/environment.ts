@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  characterUrl:'http://localhost:8080',
+  characterUrl:'http://localhost:8080/',
+  characterFindUrl: 'http://localhost:8080/find/{:id}',
   production: false
 };
 

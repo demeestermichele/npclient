@@ -1,6 +1,9 @@
-<p>character works!</p>
-<table>
-<tr *ngFor="let character of characters" >
-<td>{{getCharacter(character.id)}}</td>
-</tr>
-</table>
+<h1>Characters</h1>
+<ul class="heroes">
+  <li *ngFor="let character of characters">
+    <button type="button">
+      <span class="badge">{{character.id}}</span>
+      <span class="name">{{character.firstName}}</span>
+    </button>
+  </li>
+</ul>
