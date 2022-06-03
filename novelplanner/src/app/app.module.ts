@@ -5,10 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CharacterComponent } from './character/character.component';
 import {HttpClientModule} from "@angular/common/http";
+import {DashboardComponent} from "./dashboards/dashboard/dashboard.component";
 
 @NgModule({
   declarations: [
     AppComponent,
+    DashboardComponent,
     CharacterComponent
   ],
   imports: [
