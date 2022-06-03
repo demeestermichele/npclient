@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CharacterService} from "../core/services/character.service";
-import {Observable, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {Character} from "../core/models/character.model";
 import {HttpClient} from "@angular/common/http";
 
@@ -12,16 +12,19 @@ import {HttpClient} from "@angular/common/http";
 export class CharacterComponent implements OnInit {
   characters: Character[] = [];
   subscription: Subscription[] = [];
+  error: any;
 
-  @Input() character: Character;
+  @Input()
+  character: Character;
 
   constructor(
     private http: HttpClient,
     private characterService: CharacterService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-    this.getAll();
+    this.getCharacters();
   }
 
   getAll() {
@@ -30,7 +33,14 @@ export class CharacterComponent implements OnInit {
     return this.subscription.push(this.characterService.getAllCharacters().subscribe(characters => this.characters = characters));
   }
 
-  getCharacter(id: number): Character{
+  getCharacters():void{
+    console.log("this is from character component getCharacters()")
+    this.characterService
+      .getAllCharacters()
+      .subscribe(characters => (this.characters = characters), error => (this.error = error))
+  }
+
+  getCharacter(id: number): Character {
     return this.character[id - 1]
   }
 }
