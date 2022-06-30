@@ -8,13 +8,15 @@ import {HttpClientModule} from "@angular/common/http";
 import { CharacterListComponent } from './character/character-list/character-list.component';
 import { DashboardComponent } from './dashboards/dashboard/dashboard.component';
 import {JDENTICON_CONFIG, NgxJdenticonModule} from "ngx-jdenticon";
+import { CharacterDetailComponent } from './character/character-detail/character-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CharacterComponent,
     CharacterListComponent,
-    DashboardComponent
+    DashboardComponent,
+    CharacterDetailComponent
   ],
   imports: [
     BrowserModule,
