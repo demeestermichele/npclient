@@ -1,8 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Character} from "../../core/models/character.model";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {CharacterService} from "../../core/services/character.service";
+import {ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-character-detail',
@@ -13,18 +15,23 @@ export class CharacterDetailComponent implements OnInit {
   characters: Character[] = [];
   subscription: Subscription[] = [];
   error: any;
-  id: number;
+  id: number = +this.route.snapshot.paramMap.get('id');
+
 
   @Input()
   character: Character;
 
   constructor(
     private http: HttpClient,
-    private characterService: CharacterService) {}
+    private characterService: CharacterService,
+    private route: ActivatedRoute,
+    private backlocation: Location
+  ) {}
 
   ngOnInit(): void {
-    this.getCharacters();
+   this.getAll();
     this.getOne();
+    this.currentCharacter();
   }
 
   getAll() {
@@ -33,12 +40,6 @@ export class CharacterDetailComponent implements OnInit {
     return this.subscription.push(this.characterService.getAllCharacters().subscribe(characters => this.characters = characters));
   }
 
-  getCharacters(): void {
-    console.log("this is from character component getCharacters()")
-    this.characterService
-      .getAllCharacters()
-      .subscribe(characters => (this.characters = characters), error => (this.error = error))
-  }
   getOne() {
     console.log('get one character');
     return this.subscription.push(
@@ -47,4 +48,20 @@ export class CharacterDetailComponent implements OnInit {
         .subscribe(character => this.character = character));
 
   }
+  currentCharacter(): Observable<Character>{
+    const tid = this.getOne();
+    return this.characterService.getCharacterById(tid);
+  }
+
+
+
+  goBack(): void {
+    this.backlocation.back();
+  }
+
+  ngOnDestroy(): void {
+    this.getAll();
+    this.getOne();
+    this.currentCharacter();
+}
 }

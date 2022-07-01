@@ -1,10 +1,25 @@
-<p>character-detail works!</p>
-<div *ngFor="let character of characters">
-  <div class="w3-bar-item">
-    <span class="w3-large">{{character.firstName}} {{character.lastName}}</span><br>
-    <span class="w3-tiny">{{character.role}}</span><br>
-    <span class="w3-tiny">{{character.sex}}</span><br>
-    <span class="w3-tiny" *ngIf="character.mother" >{{character.mother.firstName}} {{character.mother.lastName}} x </span>
-    <span class="w3-tiny" *ngIf="character.father" >{{character.father.firstName}} {{character.father.lastName}}</span><br>
+<!--<div><span>character id: </span>{{character.id}}</div>-->
+<div class="list-group">
+  <h1>
+    {{character.firstName}} {{character.lastName}}
+  </h1>
+
+  <div *ngIf="character.father" class="heading"> Father:</div>
+  <a href="/characters/{{character.father.id}}" role="button" class="btn btn-block">
+     {{character.father.firstName || "Father's Name"}} {{character.father.lastName}}</a>
+  <div *ngIf="character.mother" class="heading">Mother:</div>
+  <a href="/characters/{{character.mother.id}}" role="button" class="btn btn-block">
+    {{character.mother.firstName || "Mother's Name"}} {{character.mother.lastName}}</a>
   </div>
+
+<div class="divGoBackButton">
+  <button (click)="goBack()" class="btn btn-primary" type="button">Back</button>
 </div>
+
+
+<!--  <div>-->
+<!--    <label>name:-->
+<!--      <input [(ngModel)]="character.firstName" placeholder="name"/>-->
+<!--    </label>-->
+<!--  </div>-->
+

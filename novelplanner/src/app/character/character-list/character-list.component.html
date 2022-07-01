@@ -2,8 +2,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-<ul>
-  <li routerLink="/characters/{{character.id}}" role="button" class="w3-bar w3-button w3-hover-pink" *ngFor="let character of characters">
+<ul *ngFor="let character of characters" [class.selected]="character === currentCharacter" (click)="onSelect(character)">
+  <li routerLink="/characters/{{character.id}}" role="button" class="w3-bar w3-button w3-hover-pink">
 
     <span onclick="this.parentElement.style.display='none'"
           class="w3-bar-item w3-button w3-xlarge w3-right">x</span>
