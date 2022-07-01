@@ -2,29 +2,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-
 <ul>
-  <li class="w3-bar w3-button w3-hover-pink" *ngFor="let character of characters">
-<!--    <a routerLink="/{{character.id}}" role="button" class="btn btn-block" ></a>-->
-  <span onclick="this.parentElement.style.display='none'"
-        class="w3-bar-item w3-button w3-xlarge w3-right">x</span>
-    <form action="/characters/{{character.id}}" method="GET">
-    <button class="w3-button w3-hover-pink">Characters</button>
-  </form>
-    <svg width="60" height="60" [data-jdenticon-value]="character.id" class="w3-bar-item w3-circle"
-         style="width:85px"></svg>
-    <div>
-      <div class="w3-bar-item">
-        <span class="w3-large">{{character.firstName}} {{character.lastName}}</span><br>
-        <span class="w3-tiny">{{character.role}}</span><br>
-        <span class="w3-tiny">{{character.sex}}</span><br>
-        <span class="w3-tiny" *ngIf="character.mother" >{{character.mother.firstName}} {{character.mother.lastName}} x </span>
-        <span class="w3-tiny" *ngIf="character.father" >{{character.father.firstName}} {{character.father.lastName}}</span><br>
+  <li routerLink="/characters/{{character.id}}" role="button" class="w3-bar w3-button w3-hover-pink" *ngFor="let character of characters">
 
-      </div>
+    <span onclick="this.parentElement.style.display='none'"
+          class="w3-bar-item w3-button w3-xlarge w3-right">x</span>
+
+      <svg width="60" height="60" [data-jdenticon-value]="character.id" class="w3-bar-item w3-circle"
+           style="width:85px"></svg>
       <div>
+        <div class="w3-bar-item">
+          <span class="w3-large">{{character.firstName}} {{character.lastName}}</span><br>
+          <span class="w3-tiny">{{character.role}}</span><br>
+          <span class="w3-tiny">{{character.sex}}</span><br>
+          <span class="w3-tiny" *ngIf="character.mother">{{character.mother.firstName}} {{character.mother.lastName}}
+            x </span>
+          <span class="w3-tiny"
+                *ngIf="character.father">{{character.father.firstName}} {{character.father.lastName}}</span><br>
+        </div>
       </div>
-    </div>
   </li>
 </ul>
 
+<!--  <form action="/characters/{{character.id}}" method="GET">
+    <button class="w3-button w3-hover-pink">Characters</button>
+  </form>-->
+<!--    <a routerLink="/characters/{{character.id}}" role="button" class="btn btn-block"></a>-->

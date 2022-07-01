@@ -9,8 +9,7 @@ import {CharacterDetailComponent} from "./character/character-detail/character-d
 const routes: Routes = [
   {path: '', component: DashboardComponent },
   {path: 'characters/list', component: CharacterListComponent },
-  {path: 'characters/detail', component: CharacterDetailComponent },
-  //why does 'characters/:id' not work?
+  {path: 'characters/:id', component: CharacterDetailComponent },
   {path: 'characters', component: CharacterComponent }
 ];
 
