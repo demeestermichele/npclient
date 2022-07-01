@@ -1,3 +1,6 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <!--<div><span>character id: </span>{{character.id}}</div>-->
 <div class="list-group">
   <h1>
@@ -11,6 +14,14 @@
     <a href="/characters/{{character.mother.id}}" role="button" class="btn btn-block">
       {{character.mother.firstName || "Mother's Name"}} {{character.mother.lastName}}</a></div>
 </div>
+<div *ngFor="let kids of character.kids" role="button" class="btn btn-block ">
+  <a href="/characters/{{character.kids.id}}" role="button" class="btn btn-block">
+    <a>
+      {{kids.firstname}}
+    </a>
+  </a>
+</div>
+
 
 <div class="divGoBackButton">
   <button (click)="goBack()" class="btn btn-primary" type="button">Back</button>

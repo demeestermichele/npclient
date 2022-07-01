@@ -9,4 +9,5 @@ export interface Character {
   role?: Role;
   mother?: Character;
   father?: Character;
+  kids?: Array<Character>;
 }

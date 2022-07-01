@@ -13,6 +13,7 @@ import {Location} from '@angular/common';
 })
 export class CharacterDetailComponent implements OnInit {
   characters: Character[] = [];
+  children: Character[] = [];
   subscription: Subscription[] = [];
   error: any;
   id: number = +this.route.snapshot.paramMap.get('id');
