@@ -1,1 +1,25 @@
-<p>character-detail works!</p>
+<!--<div><span>character id: </span>{{character.id}}</div>-->
+<div class="list-group">
+  <h1>
+    {{character.firstName}} {{character.lastName}}
+  </h1>
+  <div *ngIf="character.sex" class="w3-left-align">{{character.sex || 'Sex' }}</div>
+  <div *ngIf="character.father" class="heading"> Father:
+    <a href="/characters/{{character.father.id}}" role="button" class="btn btn-block">
+      {{character.father.firstName || "Father's Name"}} {{character.father.lastName}}</a></div>
+  <div *ngIf="character.mother" class="heading">Mother:
+    <a href="/characters/{{character.mother.id}}" role="button" class="btn btn-block">
+      {{character.mother.firstName || "Mother's Name"}} {{character.mother.lastName}}</a></div>
+</div>
+
+<div class="divGoBackButton">
+  <button (click)="goBack()" class="btn btn-primary" type="button">Back</button>
+</div>
+
+
+<!--  <div>-->
+<!--    <label>name:-->
+<!--      <input [(ngModel)]="character.firstName" placeholder="name"/>-->
+<!--    </label>-->
+<!--  </div>-->
+

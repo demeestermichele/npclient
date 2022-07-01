@@ -3,6 +3,7 @@ import {Character} from "../../core/models/character.model";
 import {Subscription} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {CharacterService} from "../../core/services/character.service";
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-character-list',
@@ -12,15 +13,17 @@ import {CharacterService} from "../../core/services/character.service";
 export class CharacterListComponent implements OnInit {
   characters: Character[] = [];
   subscription: Subscription[] = [];
+  currentCharacter: Character;
   error: any;
-  id: number;
+  id: number = +this.route.snapshot.paramMap.get('id');
 
   @Input()
   character: Character;
 
   constructor(
     private http: HttpClient,
-    private characterService: CharacterService
+    private characterService: CharacterService,
+    private route: ActivatedRoute,
   ) {
   }
 
@@ -49,5 +52,10 @@ export class CharacterListComponent implements OnInit {
         .subscribe(character => this.character = character));
 
   }
-
+  onSelect(character: Character): void {
+    this.currentCharacter = character;
+  }
+ngOnDestroy():void{
+    console.log('this is the charlist comp on destroy');
+}
 }

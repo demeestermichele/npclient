@@ -9,6 +9,7 @@ import { CharacterListComponent } from './character/character-list/character-lis
 import { DashboardComponent } from './dashboards/dashboard/dashboard.component';
 import {JDENTICON_CONFIG, NgxJdenticonModule} from "ngx-jdenticon";
 import { CharacterDetailComponent } from './character/character-detail/character-detail.component';
+import { CharacterCreationComponent } from './character/character-creation/character-creation.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CharacterDetailComponent } from './character/character-detail/character
     CharacterComponent,
     CharacterListComponent,
     DashboardComponent,
-    CharacterDetailComponent
+    CharacterDetailComponent,
+    CharacterCreationComponent
   ],
   imports: [
     BrowserModule,
