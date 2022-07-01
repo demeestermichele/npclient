@@ -14,9 +14,20 @@ export class CharacterService {
     constructor(private http: HttpClient) { }
 
   getAllCharacters(): Observable<Character[]> {
-    const url = `${environment.characterUrl}/character-list`;
+    const url = `${environment.characterUrl}/list`;
     console.log('this is from getAllCharacters');
     return this.http.get<Character[]>(url, this.httpOptions);
   }
 
+  getCharacterById(id: number): Observable<Character> {
+    const url = `${environment.characterUrl}/${id}`;
+    return this.http.get<Character>(url, this.httpOptions);
+  }
+
 }
+
+/*
+getCharacter(id: number): Observable<Character> {
+  return this.getAllCharacters().pipe(
+    map(characters => characters.find(character => character.id === id))
+  );}*/

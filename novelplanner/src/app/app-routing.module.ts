@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {CharacterComponent} from "./character/character.component";
+import {CharacterListComponent} from "./character/character-list/character-list.component";
+import {DashboardComponent} from "./dashboards/dashboard/dashboard.component";
+import {CharacterDetailComponent} from "./character/character-detail/character-detail.component";
 
 
 const routes: Routes = [
-  {path: 'character', component: CharacterComponent }
+  {path: '', component: DashboardComponent },
+  {path: 'characters/list', component: CharacterListComponent },
+  {path: 'characters/:id', component: CharacterDetailComponent },
+  {path: 'characters', component: CharacterComponent }
 ];
 
 @NgModule({

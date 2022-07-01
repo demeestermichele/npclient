@@ -1,8 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CharacterService} from "../core/services/character.service";
-import {Observable, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {Character} from "../core/models/character.model";
 import {HttpClient} from "@angular/common/http";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-character',
@@ -12,16 +13,22 @@ import {HttpClient} from "@angular/common/http";
 export class CharacterComponent implements OnInit {
   characters: Character[] = [];
   subscription: Subscription[] = [];
+  error: any;
+  id: number = +this.route.snapshot.paramMap.get('id');
 
-  @Input() character: Character;
+  @Input()
+  character: Character;
 
   constructor(
     private http: HttpClient,
-    private characterService: CharacterService
-  ) { }
+    private characterService: CharacterService,
+  private route: ActivatedRoute
+  ) {
+  }
 
   ngOnInit(): void {
-    this.getAll();
+    this.getCharacters();
+    this.getOne();
   }
 
   getAll() {
@@ -30,7 +37,18 @@ export class CharacterComponent implements OnInit {
     return this.subscription.push(this.characterService.getAllCharacters().subscribe(characters => this.characters = characters));
   }
 
-  getCharacter(id: number): Character{
-    return this.character[id - 1]
+  getCharacters():void{
+    console.log("this is from character component getCharacters()")
+    this.characterService
+      .getAllCharacters()
+      .subscribe(characters => (this.characters = characters), error => (this.error = error))
+  }
+  getOne() {
+    console.log('get one character');
+    return this.subscription.push(
+      this.characterService
+        .getCharacterById(this.id)
+        .subscribe(character => this.character = character));
+
   }
 }

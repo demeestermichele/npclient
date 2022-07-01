@@ -6,14 +6,23 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>1
-<router-outlet></router-outlet>1
+</head>
+<table>
+  <tr>
+    <td>
+      <form action="/" method="GET">
+        <button class="w3-button w3-hover-pink">Home</button>
+      </form>
+    </td>
+    <td>
+      <form action="/characters/list" method="GET">
+        <button class="w3-button w3-hover-pink">Characters</button>
+      </form>
+    </td>
+  </tr>
+</table>
 <body>
-<form action="/character" method="GET">
-  <button>List characters</button>
-</form>
 <app-root></app-root>
-<app-character></app-character>
 
 </body>
 </html>
