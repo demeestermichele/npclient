@@ -30,8 +30,8 @@ export class CharacterDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-   this.getAll();
-    this.getOne();
+  /* this.getAll();
+    this.getOne();*/
     this.currentCharacter();
   }
 
